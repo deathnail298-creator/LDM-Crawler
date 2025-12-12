@@ -1,0 +1,636 @@
+# LDM — Phase One Development Path  
+## Transition from Phase Zero Concept → Validated Engineering Prototype
+
+_Last Updated: Phase One Draft_
+
+Phase One transforms the **Lunar Dust Mitigator (LDM)** from a credible physics concept into a **measured, test-backed subsystem** suitable for consideration as a future lunar surface demo.
+
+Phase Zero answered:  
+> “Does this architecture make sense?”
+
+Phase One answers:  
+> “Does it actually work, and does it survive long enough to matter?”
+
+The purpose of Phase One is **evidence**, not flight hardware.
+
+---
+
+## Table of Contents
+
+1. [Phase One Objectives](#1-phase-one-objectives)  
+2. [Experimental Campaign Design](#2-experimental-campaign-design)  
+3. [Prototype Definitions & Build Specs](#3-prototype-definitions--build-specs)  
+4. [Modeling & Simulation Plan](#4-modeling--simulation-plan)  
+5. [Environmental Testing Matrix & Schedules](#5-environmental-testing-matrix--schedules)  
+6. [Success Criteria & GoNo-Go Gates](#6-success-criteria--gono-go-gates)  
+7. [Final Deliverables & Reporting Requirements](#7-final-deliverables--reporting-requirements)
+
+---
+
+## 1. Phase One Objectives
+
+Phase One has four primary goals:
+
+1. **Validate electrostatic loft efficiency** in vacuum using lunar regolith simulant.  
+2. **Quantify micro-collision erosion** caused by terrace geometry (grain “softening”).  
+3. **Assess long-duration survivability** of terraces and dielectric layers under realistic stress.  
+4. **Establish validated models** (DEM, electrostatic, thermal) to project multi-year behavior.
+
+Secondary goals:
+
+- Characterize **HV cycling fatigue** of the dielectric stack.  
+- Validate **power budget realism** vs. Phase Zero estimates.  
+- Confirm **electronics coffin thermal stability** under extreme temperature swings.
+
+At the end of Phase One, the LDM must either:
+
+- **Advance** to Phase Two engineering model development,  
+- **Advance conditionally** with specific redesigns, or  
+- Be **terminated or heavily re-scoped** if core physics or survivability claims fail.
+
+---
+
+## 2. Experimental Campaign Design
+
+Phase One runs four major experiments plus piggyback measurements.
+
+### 2.1 Experiment A — Vacuum Electrostatic Loft Test
+
+**Purpose:**  
+Prove that a fixed-bias plate under a dielectric can loft fine-grain simulant under lunar-like vacuum. (Target A)
+
+**Test Articles:**
+
+- Plate Stack A1 (HV plate + dielectric + ground plane)  
+- Regolith simulant batches (e.g., JSC-1A-like, fine fraction `< 75 µm`)
+
+**Apparatus & Conditions:**
+
+- Vacuum chamber: 10⁻⁵–10⁻⁶ torr  
+- HV supply: adjustable, current-limited, up to tens of kV (as needed)  
+- Imaging: side-view camera with backlighting if possible
+
+**Measured Quantities:**
+
+- Loft height vs. applied voltage  
+- Loft onset threshold  
+- Loft repeatability over N cycles  
+- Energy per loft cycle (V · I · t)
+
+**Run Plan:**
+
+- Sweep 5–7 voltage levels  
+- ≥5 runs per level  
+- Log voltage, current, pressure, timestamps
+
+---
+
+### 2.2 Experiment B — Micro-Collision Erosion Test
+
+**Purpose:**  
+Show that repeated low-energy collisions on terrace geometry measurably blunt grains. (Target B)
+
+**Test Articles:**
+
+- Terrace coupons (same geometry as LDM terraces)  
+- Simulant batches pre-characterized for angularity
+
+**Apparatus & Conditions:**
+
+- Gravity drop/slide rig  
+- Optional mild vibration to simulate micro-disturbances
+
+**Measured Quantities:**
+
+- Angularity distributions **before** and **after** testing  
+- Estimated collisions per grain  
+- Evolution of the extreme angular tail
+
+**Run Plan:**
+
+- At least 3 collision exposure levels (e.g., 10³, 10⁴, 10⁵ equivalent passes)  
+- SEM/micro-CT or equivalent imaging for each level
+
+---
+
+### 2.3 Experiment C — Terrace Saturation & Flow Behavior
+
+**Purpose:**  
+Evaluate whether terraces clog, self-level, or self-clear under sustained dust loading. (Target C)
+
+**Test Articles:**
+
+- Larger terrace module (~20–50 cm active area)
+
+**Apparatus & Conditions:**
+
+- Dust feeder system (slow drip/sprinkle onto terraces)  
+- Optional vibration source
+
+**Measured Quantities:**
+
+- Dust height profile along terraces vs. time  
+- Time to saturation/clogging  
+- Conditions under which terraces clear or self-level  
+- Terrace wear / geometry change
+
+**Run Plan:**
+
+- Accelerated “months–years” of dust events  
+- Periodic imaging/profiling  
+- Test multiple geometries (baseline + variant)
+
+---
+
+### 2.4 Experiment D — Thermal & Dielectric Endurance
+
+**Purpose:**  
+Verify dielectric stack and coatings survive lunar-style thermal swings and HV cycling. (Targets D/E)
+
+**Test Articles:**
+
+- Dielectric-coated plates and stack coupons  
+- Potted PCB blocks representing electronics coffin materials
+
+**Apparatus & Conditions:**
+
+- Thermal chamber: approx. −150 °C to +120 °C  
+- Cycle count (Phase One):  
+  - Coupons: ≥100 cycles  
+  - EDU: 20–50 cycles (system-level check)  
+- Optional parallel HV cycling at selected intervals
+
+**Measured Quantities:**
+
+- Visual/mechanical damage (cracks, delamination)  
+- Dielectric breakdown voltage pre/post  
+- Leakage current trend  
+- Coffin potting integrity
+
+---
+
+### 2.5 Supporting Piggyback Measurements
+
+- **HV cycling fatigue** (dielectric endurance vs. pulses)  
+- **Power budget reality check** (measured vs. modeled energy per event)  
+- **Electronics coffin thermal behavior** (internal vs. external temperatures)
+
+---
+
+### 2.6 Experimental Campaign Summary Table
+
+| Experiment | Goal                                      | Primary Outputs                                  |
+|-----------|-------------------------------------------|--------------------------------------------------|
+| A         | Prove electrostatic loft in vacuum        | Loft height vs. voltage; onset; power cost       |
+| B         | Prove micro-collision grain softening     | Angularity histograms; change vs. cycles         |
+| C         | Characterize terrace saturation/flow      | Terrace fill curves; clog vs. clear conditions   |
+| D         | Validate thermal & dielectric endurance   | Breakdown vs. cycles; failure thresholds         |
+| E (piggyback) | HV cycling fatigue                    | HV endurance curves                              |
+| F (piggyback) | Power budget validation               | Measured vs. modeled power consumption           |
+| G (piggyback) | Coffin thermal stability              | Internal vs. external temperature curves         |
+
+---
+
+## 3. Prototype Definitions & Build Specs
+
+Three main prototypes support the Phase One work.
+
+### 3.1 Prototype A — Electrostatic Plate Testbed
+
+**Role:**  
+Primary hardware for Experiment A (loft) and part of Experiment D (dielectric endurance).
+
+**Geometry:**
+
+- Plate: circular, Ø ≈ 150–200 mm (6–8")  
+- Stack: HV plate + dielectric top + ground reference plane  
+- HV–ground gap: ~5–20 mm (for manageable HV)
+
+**Materials Stack-Up:**
+
+- HV Plate: Al 6061, ~3–5 mm thick  
+- Dielectric: Kapton or thin ceramic/glass-ceramic, ~50–500 μm  
+- Ground Plane: Al or Cu, tied to chamber ground
+
+**Interfaces:**
+
+- HV connection with strain relief and shielding  
+- Ground bonded to chamber  
+- Optional series resistor for safety  
+- Mounting holes or clamps for chamber fixture
+
+---
+
+### 3.2 Prototype B — Terrace Agitation Module
+
+**Role:**  
+Primary hardware for Experiment B (grain softening) and Experiment C (terrace behavior).
+
+**Geometry:**
+
+- Footprint: ~300 × 300 mm active region  
+- Terrace geometry (baseline):  
+  - Step height: 2–10 mm  
+  - Step run: 10–30 mm  
+  - Effective slope: ~10–30°  
+- Channels can be straight (baseline) and optionally curved (variant).
+
+**Materials:**
+
+- Base: Al 6061 / stainless / machinable ceramic  
+- Surface finish: moderate roughness; avoid deep grooves  
+- Optional coatings: hard anodize or ceramic; at least one uncoated baseline.
+
+**Variants:**
+
+- B1: Baseline geometry  
+- B2: Alternate geometry (different step height/slope)
+
+---
+
+### 3.3 Prototype C — Integrated EDU (Engineering Development Unit)
+
+**Role:**  
+First full-body LDM mock-up (non-flight). Used for integration checks, power testing, and partial thermal validation.
+
+**Overall Geometry:**
+
+- Chassis: ~400–600 mm (L) × 300–400 mm (W) × 200–300 mm (H)  
+- Visual form: boxy, Crawler-derived, no delicate appendages
+
+**Subsystem Placement:**
+
+- Top: solar region + terrace region  
+- Internal: sealed electronics coffin near thermal/structural center  
+- Bottom: flat contact surfaces + structural ribs
+
+**Materials & Construction:**
+
+- Chassis: metal shell, 2–5 mm thick  
+- Coffin: sealed metal box, fully potted PCB  
+- Terraces: integrated or removable module matching Prototype B
+
+**Electrical Architecture:**
+
+- Power:  
+  - Option A: Small real solar + battery  
+  - Option B: Bench supply emulating solar+battery (lab mode)  
+
+- Control:  
+  - Simple timer/MCU controlling HV duty cycle  
+
+- HV Path:  
+  - PCB → HV module → feedthrough → plate array under terraces
+
+**Thermal Features:**
+
+- Conductive paths from coffin to chassis  
+- Radiator surfaces (fins/panels) on exterior  
+- No pumps or active cooling
+
+---
+
+### 3.4 Build Priorities & Non-Goals
+
+**Priorities:**
+
+- Prototype A: clean HV behavior in vacuum, safe and well-instrumented  
+- Prototype B: geometrically faithful terraces, robust for abrasion  
+- Prototype C: realistic integration to expose architectural problems
+
+**Non-Goals for Phase One:**
+
+- No space-rated electronics or harness  
+- No full flight-level structural qualification  
+- No complex telemetry or sensor suites  
+- No multi-unit swarm or network behaviors
+
+---
+
+## 4. Modeling & Simulation Plan
+
+Phase One modeling supports, not replaces, experiments.
+
+### 4.1 DEM — Dust Collision & Grain Softening
+
+**Purpose:**  
+Quantify grain-shape evolution under terrace collisions and scale lab results to mission timescales.
+
+**Inputs:**
+
+- Grain size distribution from simulant  
+- Material properties (density, friction, hardness approx.)  
+- Terrace geometry from Prototype B CAD  
+- Initial angularity distribution from SEM/micro-CT  
+
+**Outputs:**
+
+- Collisions per grain vs. time  
+- Impact energy distributions  
+- “Sharpness” metric evolution vs. cycles  
+- Predicted % change in angular tail
+
+**Validation:**
+
+- Compare DEM results to Experiment B data  
+- Accept factor-of-two agreement; adjust only within physically justified bounds
+
+---
+
+### 4.2 Electrostatic Field Modeling
+
+**Purpose:**  
+Predict field distribution, loft onset voltages, and dielectric breakdown margins.
+
+**Inputs:**
+
+- Prototype A geometry  
+- Dielectric thickness / permittivity  
+- Voltage sweep across test range  
+- Approximate dust surface behavior if needed
+
+**Outputs:**
+
+- Field strength at surface vs. applied voltage  
+- Approximate lift threshold vs. grain charge/mass  
+- Peak field inside dielectric vs. breakdown strength
+
+**Validation:**
+
+- Compare predicted loft onset vs. Experiment A  
+- Compare predicted breakdown margins vs. Experiment D failures (if any)
+
+---
+
+### 4.3 Thermal Modeling (FEA)
+
+**Purpose:**  
+Ensure electronics coffin and chassis stay within survivable temperatures.
+
+**Inputs:**
+
+- EDU geometry (Prototype C)  
+- Material thermal properties  
+- Boundary conditions: solar load, view to space, regolith contact model  
+- Internal heat load from electronics
+
+**Outputs:**
+
+- Temperature vs. time at coffin interior/exterior  
+- Chassis/radiator temperature profiles  
+- Diurnal swing amplitudes
+
+**Validation:**
+
+- Compare to chamber tests (EDU and coffin coupons)  
+- Accept ±15 °C tolerance, refine contact/emissivity parameters accordingly
+
+---
+
+### 4.4 Model Integration
+
+Combined use:
+
+- DEM + electrostatics → cycles/day and collisions/grain over mission duration.  
+- Thermal model → realistic duty cycle constraints for HV events.
+
+Models must be explicitly documented and archived for independent review.
+
+---
+
+## 5. Environmental Testing Matrix & Schedules
+
+### 5.1 Prototype-Level Test Matrix
+
+**Prototype A — Plate Testbed**
+
+- Vacuum loft: **Required**  
+- HV cycling fatigue: **Required**  
+- Thermal cycling: Coupon-level **required**; full plate as needed  
+
+**Prototype B — Terrace Module**
+
+- Abrasion / dust: **Required**  
+- Vacuum: **Optional** (benchtop acceptable)  
+- Vibration: **Optional** for flow behavior  
+
+**Prototype C — EDU**
+
+- Thermal cycling: **Required**  
+- Power cycle tests: **Required**  
+- Limited vacuum: **Strongly recommended**  
+- Vibration: **Optional** (Phase Two focus)
+
+---
+
+### 5.2 Test Conditions
+
+- Thermal range: approx. −150 °C to +120 °C  
+- Coupon cycles: ≥100  
+- EDU cycles: 20–50 minimum  
+- Vacuum: 10⁻⁵–10⁻⁶ torr for loft tests
+
+HV duty-cycle acceleration:  
+- Compress years of operation into **1,000–10,000** HV events for fatigue characterization.
+
+---
+
+### 5.3 Sequencing & Parallelization
+
+Logical order:
+
+1. Material coupons (thermal/dielectric)  
+2. Prototype A loft tests  
+3. Prototype B collision/abrasion tests  
+4. Prototype A HV endurance tests  
+5. Prototype C EDU build + thermal/power tests  
+6. Optional integration vacuum checks
+
+Parallelization for a 12-month SBIR-scale effort:
+
+- Months 0–2: Coupons + first-pass designs  
+- Months 2–4: Prototype A & B main experiments  
+- Months 4–6: Extended abrasion + HV fatigue; start EDU build  
+- Months 6–9: EDU thermal and power tests; model refinement  
+- Months 9–12: Re-tests, final alignment, reporting
+
+---
+
+## 6. Success Criteria & Go/No-Go Gates
+
+### 6.1 Physics-Level Criteria
+
+**Loft Success:**
+
+- Fine simulant (≤50–100 μm) lofts in vacuum at ≤10⁻⁵ torr  
+- Onset voltage within ±30% of model predictions  
+- Repeatable across ≥3 independent runs  
+
+**Grain Softening Success:**
+
+- ≥1–5% reduction in extreme angular tail after accelerated cycles  
+- Trend matches DEM direction and order of magnitude  
+
+---
+
+### 6.2 Materials-Level Criteria
+
+**Dielectric Integrity:**
+
+- ≥1,000–10,000 HV cycles without catastrophic breakdown  
+- Leakage current within modeled expectations
+
+**Terrace Durability:**
+
+- ≤5% loss of critical dimensions after long-duration abrasion tests  
+- Terraces remain functionally shaped
+
+---
+
+### 6.3 System-Level Criteria
+
+**Coffin Thermal Survivability:**
+
+- Coffin interior remains within:  
+  - Tmax ≤ 120 °C  
+  - Tmin ≥ −50 °C (or per chosen parts)  
+- Thermal model matches data within ±15 °C
+
+**Power Feasibility:**
+
+- HV event energy cost within ±25% of model  
+- Duty cycle sustainable with plausible small-solar/battery architecture
+
+**Integration Stability:**
+
+- No HV runaway  
+- No severe cross-talk or uncontrolled EMI  
+- No structural damage due to thermal cycles
+
+---
+
+### 6.4 Model–Experiment Agreement
+
+**DEM:**  
+- Angularity evolution and collision statistics match experiments within factor-of-two.
+
+**Electrostatic:**  
+- Loft onset and breakdown margin predictions match measured behavior within stated tolerances.
+
+**Thermal:**  
+- Coffin and chassis temperature curves agree within ±15 °C of chamber data.
+
+---
+
+### 6.5 Go/No-Go Decision Outcomes
+
+**GO:**  
+- Loft works, softening is real, terraces viable, dielectric/thermal margins are acceptable, and models align with experiments.  
+- Recommendation: advance to Phase Two engineering model.
+
+**CONDITIONAL GO:**  
+- Core physics work, but redesign needed (materials, terrace geometry, duty cycle, coffin design).  
+- Recommendation: advance with explicit redesign items.
+
+**NO-GO:**  
+- Loft unobtainable at realistic voltages, no grain softening, catastrophic material/thermal issues, or models irreconcilable with data.  
+- Recommendation: terminate or pivot; LDM not worth further funding in current form.
+
+---
+
+## 7. Final Deliverables & Reporting Requirements
+
+### 7.1 Written Technical Deliverables
+
+**Phase One Final Report:**
+
+- Executive summary  
+- System overview  
+- Phase Zero recap  
+- Phase One methodology  
+- Experimental results (A–D)  
+- Model–experiment alignment  
+- Conclusions & Go/No-Go recommendation  
+- Appendices with raw data, CAD, ACS2, material certs, test logs
+
+**Standalone Modeling Packages:**
+
+- DEM package  
+- Electrostatic package  
+- Thermal package  
+
+Each with assumptions, inputs, outputs, comparison plots, and caveats.
+
+**Operational Test Logs:**
+
+- Loft, HV, abrasion, thermal, EDU power-cycle logs  
+- Anomaly reports  
+- Configuration and versioning information
+
+---
+
+### 7.2 Hardware Deliverables
+
+- Prototype A documentation (and hardware if required)  
+- Prototype B documentation (and hardware if required)  
+- Prototype C EDU documentation (as-built, photos, PCB layouts, routing diagrams)
+
+Physical transfer of hardware depends on NASA/contract terms; documentation is always required.
+
+---
+
+### 7.3 Data Deliverables
+
+- Raw experimental data in CSV/TXT form  
+- Video/time-lapse evidence of key tests  
+- Material and component specifications and certs
+
+---
+
+### 7.4 Review Board Package
+
+- Slide deck summarizing all results  
+- Plots of key figures of merit  
+- Comparison of predicted vs. measured performance  
+- Clear Go/Conditional Go/No-Go recommendation  
+- Phase Two concept outline and cost/schedule sketch
+
+---
+
+### 7.5 Reporting Timeline
+
+- **Mid-Term Report (~3–4 months):**  
+  - Early results  
+  - Emerging risks or deviations  
+  - Any test matrix changes
+
+- **Final Report (~12 months):**  
+  - Full dataset  
+  - Final models  
+  - Final decision recommendation
+
+---
+
+### 7.6 Archival Requirements
+
+- CAD in neutral formats (STEP/IGES)  
+- Models, scripts, and configs archived (e.g., in this repo or linked)  
+- Test logs timestamped and version-controlled  
+- ACS2 diagrams stored as text and PDF
+
+---
+
+## Summary
+
+Phase One is designed to be:
+
+- technically honest,  
+- experimentally grounded,  
+- and realistically executable within a 6–12 month SBIR-style effort.
+
+If successful, it will:
+
+- prove LDM’s physics,  
+- validate its survivability,  
+- and produce a defensible basis for a Phase Two engineering model and eventual lunar demo as a passive dust-conditioning asset for surface infrastructure.
+
