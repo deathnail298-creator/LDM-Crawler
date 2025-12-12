@@ -1,314 +1,222 @@
-LDM — Lunar Dust Mitigator
-Phase Zero Technical Concept Package
+# LDM — Lunar Dust Mitigator  
+_Phase Zero Concept Architecture_
 
-(GitHub Version — README.md)
+The **Lunar Dust Mitigator (LDM)** is a passive-first, long-duration lunar surface device designed to **reduce regolith abrasiveness by ~5%** within its operational zone.
 
-1. Executive Summary
+That small shift in particle shape translates into meaningful improvements in:
 
-The Lunar Dust Mitigator (LDM) is a passive-first, long-duration lunar surface device designed to reduce regolith abrasiveness by ~5% within its operational zone.
-This small shift in particle shape significantly improves wear rates on seals, radiators, solar arrays, landing pads, and rover systems across multi-year surface missions.
+- seal and bearing lifetime  
+- radiator and solar array durability  
+- landing pad and rover wear  
+- contamination rates around habitats and surface hardware  
 
-The LDM uses three simple mechanisms:
+LDM achieves this using **no moving parts** and a simple combination of:
 
-Electrostatic Lift of fine dust grains
+- **Electrostatic Lift** of fine dust grains  
+- **Passive Agitation & Micro-Collision Erosion**  
+- **Controlled Top-Down Redistribution**
 
-Passive Agitation & Micro-Collision Erosion
+The chassis and delivery logic inherit directly from the original **Crawler** architecture, keeping the design simple, rugged, and easy to manufacture.
 
-Controlled Top-Down Redistribution
+---
 
-No moving parts.
-No sensors.
-No active dust-handling.
-Just physics, geometry, and time.
+## 1. Motivation
 
-LDM inherits the structural chassis from the original Crawler concept, leveraging its rugged, monotonic engineering style and simple delivery profile.
+Lunar regolith is:
 
-2. Motivation & Problem Context
+- sharp  
+- angular  
+- glass-like  
+- electrostatically active  
 
-Lunar regolith is a highly abrasive, angular, glass-like material created by micrometeorite impacts. It damages:
+It chews through:
 
-seals
+- seals, cables, and bearings  
+- solar panels and radiators  
+- lander legs and rover wheels  
+- suitport interfaces and optical systems  
 
-radiators
+You cannot “remove” lunar dust at scale.  
+You _can_ locally **condition** it so the particles are slightly less hostile.
 
-solar panels
+LDM aims for exactly that: a modest, local **statistical softening** of grain shapes that compounds over years of operation.
 
-landing pads
+---
 
-rover wheels
+## 2. Phase Zero Design Rules
 
-suitports
+LDM follows strict Phase Zero constraints:
 
-optical surfaces
+- **No external moving parts** in the dust-handling path  
+- **Passive-first engineering** (geometry and physics do the work)  
+- **Monolithic, dust-tolerant chassis** (Crawler heritage)  
+- **Fixed-geometry electrostatics** (no feedback loops, no sensing)  
+- **Passive thermal control** (no pumps, no valves)  
+- **Simple power system** (fixed solar, low-duty battery, deep sleep)  
+- **Graceful failure** (device fails silent and safe)  
 
-NASA has no practical method to “remove” lunar dust.
-But small changes in angularity distribution produce large multi-year reliability benefits.
+If a choice exists between _clever_ and _simple_, Phase Zero chooses **simple** every time.
 
-LDM addresses the problem by conditioning, not removing, regolith.
+---
 
-3. Phase Zero Design Rules & Constraints
+## 3. System Overview
 
-Phase Zero mandates:
+### 3.1 High-Level Subsystems
 
-No moving parts
+1. **Chassis & Structural Frame**  
+   - Rugged mono-block shell  
+   - Minimal seams and dust traps  
+   - Integrated thermal conduction paths  
 
-Passive-first engineering
+2. **Electrostatic Lift Array**  
+   - Fixed-voltage plates beneath a dielectric top layer  
+   - Upward-directed field to loft fine regolith grains  
+   - Extremely low duty cycle (minutes per day or less)  
 
-Monolithic, dust-tolerant chassis
+3. **Passive Agitation Geometry**  
+   - Terraces, channels, and basins machined or cast into the top surface  
+   - Grains roll, slide, and collide at low energy  
+   - Long-term micro-collision erosion blunts particles  
 
-Long-duration operation
+4. **Power & Thermal Backbone**  
+   - Fixed solar panel (no deployment mechanisms)  
+   - Small, slow-cycling battery  
+   - Passive radiators and insulation  
+   - Electronics in a sealed, potted “coffin”  
 
-Fixed-geometry electrostatics
+---
 
-Passive thermal control
+## 4. Operating Principle
 
-Simple, idiot-proof power system
+LDM operates on a simple, repeatable loop:
 
-Reuse of Crawler delivery architecture
+1. **Energize Plates**  
+   - At fixed intervals, the embedded plates charge.  
+   - Fine dust grains at the surface gain charge and are lofted upward.
 
-Realistic success metrics
+2. **Ballistic Return**  
+   - Plates turn off.  
+   - Lofted grains fall back in clean ballistic trajectories (no atmosphere, no wind).
 
-The machine must survive lunar vacuum, radiation, dust, thermal swings, and stupidity.
+3. **Passive Agitation**  
+   - Grains land on terraced geometry.  
+   - They roll, slide, and collide with other grains at low energy.  
+   - Over many cycles, sharp edges and fracture points are statistically reduced.
 
-4. System Overview
+4. **Redistribution & Drift**  
+   - Conditioned dust slowly migrates outward due to natural regolith creep and local activity.  
+   - Fresh, sharper dust drifts into the footprint and is processed in future cycles.
 
-The LDM consists of four major subsystems:
+5. **Long-Duration Compounding**  
+   - Over years, the local grain-shape distribution shifts.  
+   - Even a ~5% reduction in angularity can yield noticeable improvements in wear and fouling rates.
 
-Chassis & Structural Frame — rugged mono-block body, Crawler-derived
+The effect is **slow**, **boring**, and **cumulative**—exactly the kind of behavior suitable for long-lived surface infrastructure.
 
-Electrostatic Lift Array — simple fixed-bias plates under a dielectric skin
+---
 
-Passive Agitation Geometry — terraced, micro-channel top surface for collisions
+## 5. Mission Architecture (Phase Zero)
 
-Power/Thermal Backbone — fixed solar panel, low-duty battery, passive radiators
+### 5.1 Deployment
 
-High-Level Behavior
+LDM is designed to be delivered using Crawler-style packaging:
 
-Energize plates briefly
+- rigid body with no unfolding mechanisms  
+- compatible with:  
+  - robotic placement by a rover  
+  - bolting to a lander structure  
+  - simple “drop and set” emplacement  
 
-Lift fine dust
+After it is on the ground and sees sunlight, it begins autonomous operation.
 
-Dust falls onto terraces
+### 5.2 Daily Cycle (Example)
 
-Repeated collisions dull grain edges
+- Wake from deep sleep  
+- Energize plates for 1–5 minutes  
+- Loft fine dust  
+- De-energize and return to deep sleep  
+- Let passive agitation and regolith flow do the rest
 
-Conditioned grains migrate outward
+The device spends almost all of its life **asleep**, waking just long enough to perform the dust-conditioning action.
 
-Slow cumulative effect improves local environment longevity
+### 5.3 Footprint & Timescale
 
-5. Subsystem Breakdown
-5.1 Chassis
+- Operational radius (Phase Zero estimate): **3–15 m** around the unit  
+- Timescale: **years**, not days  
 
-Monolithic design
+The goal is to quietly improve the local environment near:
 
-Minimal seams
+- solar farms  
+- radiators  
+- lander pads  
+- rover parking/maintenance zones  
+- habitats and ISRU hardware  
 
-Dust-rejecting geometry
+---
 
-Thermal conduction ribs
+## 6. Technical Margins & Uncertainties (Phase Zero)
 
-5.2 Electrostatic Lift System
+Known open questions include:
 
-Fixed-voltage plates
+- Variability in electrostatic loft efficiency across different regolith types  
+- Exact per-cycle effect on grain angularity  
+- Long-term behavior of terraces under repeated dust loading  
+- Solar panel degradation under dust + UV + radiation  
+- Dielectric endurance under thermal cycling and high-voltage pulses  
+- Electronics lifetime in a ±150 °C environment  
 
-No modulation, no sensors
+These are **Phase One** issues by design:  
+Phase Zero defines the architecture and physics; Phase One tests and quantifies.
 
-Minutes-per-day duty cycle
+---
 
-5.3 Passive Agitation Geometry
+## 7. Failure Modes & Graceful Degradation
 
-Terraced top surface
+LDM is designed so that **all primary failures are safe and silent**:
 
-Micro-collision arena
+- Loss of lift function → device simply stops conditioning dust  
+- Power system fade → unit falls into permanent sleep  
+- Terrace clogging → conditioning efficiency declines, no hazard  
+- Micrometeorite or thermal damage → performance drops, not explosive failure  
+- Regolith burial → system becomes inert terrain with a pre-conditioned patch of regolith beneath it  
 
-No moving parts
+In every case, the worst outcome is “it stops helping,” not “it causes a problem.”
 
-5.4 Power System
+---
 
-Fixed solar panel
+## 8. Phase One Path (High-Level)
 
-Low-cycling battery
+A future Phase One effort would:
 
-Deep-sleep majority operation
+- Validate electrostatic loft performance in vacuum with regolith simulant  
+- Measure grain-shape evolution under repeated terrace interactions  
+- Characterize terrace saturation and flow behavior  
+- Run thermal cycling and dielectric endurance tests  
+- Build a benchtop electrostatic testbed, a terraced mock-up, and an integrated engineering development unit (EDU)  
+- Produce models (DEM, electrostatics, thermal) backed by experimental data  
 
-5.5 Thermal System
+The intent is to move from **credible concept** → **validated, test-backed technology** that can be considered for lunar surface demonstrations.
 
-Fully passive
+---
 
-Conduction paths, insulation, radiative surfaces
+## 9. Heritage
 
-5.6 Electronics Coffin
+LDM inherits:
 
-Sealed, potted PCB
+- chassis philosophy  
+- delivery packaging  
+- ORC-style simplicity  
 
-Minimal MCU / oscillator
+from the original **Crawler** architecture.
 
-No environmental sensing
+This design lineage is intentional:
+- it reduces risk,  
+- simplifies manufacturing,  
+- and makes it easier for external teams to understand and prototype the system.
 
-5.7 Delivery Architecture
+---
 
-Reuses Crawler’s delivery form factor
+## License
 
-No deployment actions required
-
-5.8 Local Environment Interaction
-
-Dust lofting → collisions → redistribution
-
-Slow outward migration of conditioned grains
-
-6. Operating Principle
-
-LDM operates through a five-step physics-driven loop:
-
-Lift: Electrostatic plates loft fine regolith grains
-
-Fall: Dust descends in clean ballistic arcs
-
-Agitate: Terraces force repeated low-energy collisions
-
-Redistribute: Particles migrate outward, spreading softening effects
-
-Repeat: Over years, angularity distribution shifts measurably
-
-The effect is cumulative, not instantaneous.
-
-7. Mission Architecture (Phase Zero)
-Deployment
-
-Robotic placement
-
-Attached to lander
-
-Drop-and-set
-
-Operating Cycle
-
-1–5 minutes of plate energization
-
-Followed by hours/days of passive dust interaction
-
-Entire device sleeps 99% of the time
-
-Footprint
-
-3–15 meters radius (Phase Zero estimate)
-
-Timeline
-
-Year 1: Initial conditioning
-
-Year 1–3: Stable churn zone forms
-
-Year 3–10+: Footprint expands via regolith flow
-
-End of Life
-
-Fails silently into inert object or remains partially functional.
-
-8. Technical Margins & Uncertainties
-
-Key unresolved questions (normal for Phase Zero):
-
-Variation in regolith loft efficiency
-
-Exact per-cycle angularity reduction
-
-Long-term terrace saturation behavior
-
-Day/night thermal stress limits
-
-Dielectric fatigue and arcing probability
-
-Solar panel survivability under dust + UV
-
-Electronics lifespan under thermal cycling
-
-All uncertainties have defined Phase One test paths.
-
-NASA expects to see this list.
-
-9. Failure Modes & Graceful Degradation
-
-All LDM failures are safe and silent:
-
-Lift plates fail → dust stops lofting
-
-Power fades → unit enters permanent sleep
-
-Terraces clog → efficiency declines, no hazard
-
-Thermal cracking → performance loss, not catastrophic
-
-Burial → system becomes benign terrain object
-
-No mode generates debris, throws dust, or threatens nearby hardware.
-
-10. Phase One Path
-Core Objectives
-
-Validate electrostatic loft in vacuum
-
-Measure grain-shape evolution
-
-Characterize terrace endurance
-
-Model multi-year behavior
-
-Key Experiments
-
-Vacuum loft test
-
-Micro-collision erosion measurement
-
-Terrace saturation tests
-
-Thermal cycling endurance
-
-Prototype Hardware
-
-Electrostatic testbed
-
-Terraced agitation mock-up
-
-Integrated EDU (Engineering Development Unit)
-
-Modeling Work
-
-DEM collision simulations
-
-COMSOL electrostatic field mapping
-
-Thermal conduction & radiation models
-
-Success Criteria
-
-Repeatable loft
-
-≥1% angularity reduction in accelerated tests
-
-100+ thermal cycles without dielectric failure
-
-Power within 20% of model
-
-Transition Path
-
-Phase One → Engineering Model → Surface Demo → CLPS or Artemis support mission.
-
-License
-
-(Already in your repo — leave as-is. If you want, I can format a short summary section here.)
-
-Footnotes & Heritage
-
-This LDM architecture inherits the legacy Crawler delivery system philosophy:
-
-“One piece, no nonsense”
-
-“Passive-first”
-
-“Survive the Moon and keep going”
-
-“If it fails, it dies quietly”
-
-This continuity is intentional and beneficial for NASA/contractor reviewers.
+This project is released under the license provided in [`LICENSE`](./LICENSE).  
+Please refer to that file for terms of use and commercialization rules.
