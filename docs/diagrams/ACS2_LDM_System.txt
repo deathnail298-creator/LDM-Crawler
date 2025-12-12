@@ -1,0 +1,140 @@
+ACS2 – LDM SYSTEM TOPOLOGY (Phase Zero)
+=======================================
+
+This ACS2 map describes the static subsystem architecture, internal routing,
+and environmental interaction pathways for the Lunar Dust Mitigator (LDM).
+
+---------------------------------------------------------------------------
+NODES
+---------------------------------------------------------------------------
+
+CHASSIS_CORE
+    - Monolithic structural frame
+    - Load-bearing geometry
+    - Houses all internal subsystems
+
+ELECTRONICS_COFFIN
+    - Sealed, potted electronics block
+    - Contains MCU/timer, HV driver, power management
+
+HV_PLATE_ARRAY
+    - Fixed-bias electrostatic lift plates
+    - Embedded beneath dielectric top surface
+
+DIELECTRIC_TOP_LAYER
+    - Protective coating over HV_PLATE_ARRAY
+    - Interfaces with regolith and lofted dust
+
+PASSIVE_AGITATION_GEOMETRY
+    - Terraces, micro-channels, basins
+    - Primary dust-collision and conditioning zone
+
+SOLAR_PANEL
+    - Fixed-orientation photovoltaic surface
+    - Primary power source
+
+BATTERY_BANK
+    - Small, slow-cycling Li-ion or LFP pack
+    - Deep-sleep majority operation
+
+POWER_BUS
+    - Connects SOLAR_PANEL and BATTERY_BANK to ELECTRONICS_COFFIN
+
+THERMAL_PATHS
+    - Conductive links through chassis
+    - Ties ELECTRONICS_COFFIN to radiative surfaces
+
+RADIATOR_SURFACES
+    - Passive radiators integrated into outer geometry
+
+ENVIRONMENT_INTERFACE
+    - Direct contact surface with lunar regolith and vacuum
+    - Includes dust loft/fall region and regolith drift zone
+
+
+---------------------------------------------------------------------------
+EDGES (Functional & Physical Links)
+---------------------------------------------------------------------------
+
+CHASSIS_CORE  -> ELECTRONICS_COFFIN
+    Structural containment + mechanical isolation
+
+CHASSIS_CORE  -> THERMAL_PATHS
+    Conduction channels molded/machined into frame
+
+THERMAL_PATHS -> RADIATOR_SURFACES
+    Steady-state and cyclic heat rejection route
+
+SOLAR_PANEL   -> POWER_BUS
+    Primary daytime charging
+
+BATTERY_BANK  -> POWER_BUS
+    Nighttime and operational-cycle support
+
+POWER_BUS     -> ELECTRONICS_COFFIN
+    Provides power to MCU/timer and HV driver
+
+ELECTRONICS_COFFIN -> HV_PLATE_ARRAY
+    High-voltage activation during charge cycles
+
+HV_PLATE_ARRAY -> DIELECTRIC_TOP_LAYER
+    Electric field transmitted through dielectric to loft dust
+
+DIELECTRIC_TOP_LAYER -> PASSIVE_AGITATION_GEOMETRY
+    Lofted dust falls onto terraces and channels
+
+PASSIVE_AGITATION_GEOMETRY -> ENVIRONMENT_INTERFACE
+    Conditioned dust migrates outward into local regolith
+
+ENVIRONMENT_INTERFACE -> PASSIVE_AGITATION_GEOMETRY
+    Fresh unconditioned dust drifts inward naturally
+
+ENVIRONMENT_INTERFACE -> DIELECTRIC_TOP_LAYER
+    Dust coverage modifies field efficiency over mission
+
+
+---------------------------------------------------------------------------
+MODE BEHAVIORAL RELATIONSHIPS
+---------------------------------------------------------------------------
+
+MODE_SLEEP
+    - ELECTRONICS_COFFIN idle
+    - HV_PLATE_ARRAY inactive
+    - SOLAR_PANEL charges BATTERY_BANK
+    - No agitation beyond natural regolith movement
+
+MODE_LIFT
+    - ELECTRONICS_COFFIN activates HV_PLATE_ARRAY
+    - DIELECTRIC_TOP_LAYER charges surface particles
+    - ENVIRONMENT_INTERFACE lofts dust upward
+
+MODE_COLLISION
+    - HV off
+    - Dust descends
+    - PASSIVE_AGITATION_GEOMETRY forces collisions and rolling
+
+MODE_REDISTRIBUTION
+    - Conditioned dust drifts outward
+    - Fresh dust drifts inward
+
+
+---------------------------------------------------------------------------
+FAILURE STATE MAP (Structural)
+---------------------------------------------------------------------------
+
+Loss of HV_PLATE_ARRAY
+    -> System defaults to MODE_SLEEP indefinitely
+
+Loss of SOLAR_PANEL
+    -> BATTERY_BANK drains -> permanent MODE_SLEEP
+
+Loss of PASSIVE_AGITATION_GEOMETRY (erosion/fracture)
+    -> Reduced conditioning efficiency; still safe
+
+Burial by Regolith
+    -> All nodes isolated; system becomes inert terrain object
+
+
+---------------------------------------------------------------------------
+END OF ACS2 MAP
+---------------------------------------------------------------------------
